@@ -207,6 +207,18 @@ const iconic_races: Array<Race> = [
         }
     },
     {
+        alias: "deep_gnome",
+        name: "Deep Gnome",
+        selected: true,
+        isIconic: true,
+        forcedClass: 'wizard',
+        forcedClassName: 'Wizard',
+        statsMod: {
+            increasedStats : [ { name: "INT", value: 2 }, { name: "WIS", value: 2 }, ],
+            loweredStats : [ { name: "STR", value: 2 }, { name: "CHA", value: 2 }, ]
+        }
+    },
+    {
         alias: "morninglord",
         name: "Morninglord",
         selected: true,
