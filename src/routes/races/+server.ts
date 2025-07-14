@@ -142,6 +142,24 @@ const premium_races: Array<Race> = [
         }
     },
     {
+        alias: "dhampir",
+        name: "Dhampir",
+        selected: true,
+        isIconic: false,
+        statsMod: {
+            increasedStats : [ { name: "STR", value: 2 } ]
+        }
+    },
+    {
+        alias: "eladrin",
+        name: "Eladrin",
+        selected: true,
+        isIconic: false,
+        statsMod: {
+            increasedStats : [ { name: "DEX", value: 2 } ]
+        }
+    },
+    {
         alias: "shifter",
         name: "Shifter",
         selected: true,
@@ -184,6 +202,28 @@ const iconic_races: Array<Race> = [
         statsMod: {
             increasedStats : [ { name: "CON", value: 2 }, ],
             loweredStats : [ { name: "DEX", value: 2 }, { name: "WIS", value: 2 }, ]
+        }
+    },
+    {
+        alias: "chaosmancer",
+        name: "Chaosmancer",
+        selected: true,
+        isIconic: true,
+        forcedClass: 'sorcerer',
+        forcedClassName: 'Sorcerer',
+        statsMod: {
+            increasedStats : [ { name: "CHA", value: 2 }, ]
+        }
+    },
+       {
+        alias: "dark_bargainer",
+        name: "Dark Bargainer",
+        selected: true,
+        isIconic: true,
+        forcedClass: 'warlock',
+        forcedClassName: 'Warlock',
+        statsMod: {
+            increasedStats : [ { name: "INT", value: 1 }, { name: "CHA", value: 1 }, ]
         }
     },
     {

@@ -295,6 +295,18 @@ const archetype_classes: Array<Class> = [
             { name : "Ravager", alias: "ravager", value: 0 },
         ]
     },
+    {
+        alias: "dragon_disciple",
+        name: "Dragon Disciple",
+        selected: true,
+        isArchetype: true,
+        weightedStats: [ { name: "DEX", value: 2 },  { name: "WIS", value: 3 }, ],
+        enhancementTrees: [
+            { name : "Ninja Spy", alias: "ninja_spy", value: 0 },
+            { name : "Shintao Monk", alias: "shintao_monk", value: 0 },
+            { name : "Dragon Disciple", alias: "dragon_disciple", value: 0 },
+        ]
+    }
 ]
 
 export function GET(): Response {
