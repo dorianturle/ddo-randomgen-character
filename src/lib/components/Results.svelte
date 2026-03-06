@@ -290,6 +290,12 @@
                         return !["bard", "barbarian"].includes(_class.alias);
                     })
                     break;
+                case 'rogue':
+                case 'arcane_trickster':
+                    classesCopy = classesCopy.filter(function( _class ) {
+                        return !["arcane_trickster", "rogue"].includes(_class.alias);
+                    })
+                    break;
 
                 default: break;
             }

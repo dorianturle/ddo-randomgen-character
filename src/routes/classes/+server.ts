@@ -240,7 +240,7 @@ const archetype_classes: Array<Class> = [
         name: "Dark Apostate",
         selected: true,
         isArchetype: true,
-        weightedStats: [ { name: "WIS", value: 2 },  { name: "CHA", value: 2 }, ],
+        weightedStats: [ { name: "WIS", value: 3 },  { name: "CHA", value: 2 }, ],
         enhancementTrees: [
             { name : "Divine Disciple", alias: "divine_disciple", value: 0 },
             { name : "Dark Apostate", alias: "dark_apostate", value: 0 },
@@ -252,7 +252,7 @@ const archetype_classes: Array<Class> = [
         name: "Dark Hunter",
         selected: true,
         isArchetype: true,
-        weightedStats: [ { name: "DEX", value: 2 },  { name: "INT", value: 2 }, ],
+        weightedStats: [ { name: "DEX", value: 3 },  { name: "INT", value: 2 }, ],
         enhancementTrees: [
             { name : "Dark Hunter", alias: "dark_hunter", value: 0 },
             { name : "Deepwood Stalker", alias: "deepwood_stalker", value: 0 },
@@ -264,7 +264,7 @@ const archetype_classes: Array<Class> = [
         name: "Sacred Fist",
         selected: true,
         isArchetype: true,
-        weightedStats: [ { name: "CHA", value: 2 },  { name: "DEX", value: 2 }, ],
+        weightedStats: [ { name: "CHA", value: 3 },  { name: "DEX", value: 2 }, ],
         enhancementTrees: [
             { name : "Sacred Defender", alias: "sacred_defender", value: 0 },
             { name : "Radiant Servant", alias: "radiant_servant", value: 0 },
@@ -288,7 +288,7 @@ const archetype_classes: Array<Class> = [
         name: "Dragon Lord",
         selected: true,
         isArchetype: true,
-        weightedStats: [ { name: "STR", value: 2 },  { name: "CHA", value: 2 }, ],
+        weightedStats: [ { name: "STR", value: 3 },  { name: "CHA", value: 2 }, ],
         enhancementTrees: [
             { name : "Stalwart Defender", alias: "stalwart_defender", value: 0 },
             { name : "Dragon Lord", alias: "dragon_lord", value: 0 },
@@ -300,11 +300,23 @@ const archetype_classes: Array<Class> = [
         name: "Dragon Disciple",
         selected: true,
         isArchetype: true,
-        weightedStats: [ { name: "DEX", value: 2 },  { name: "WIS", value: 3 }, ],
+        weightedStats: [ { name: "WIS", value: 3 },  { name: "DEX", value: 2 }, ],
         enhancementTrees: [
             { name : "Ninja Spy", alias: "ninja_spy", value: 0 },
             { name : "Shintao Monk", alias: "shintao_monk", value: 0 },
             { name : "Dragon Disciple", alias: "dragon_disciple", value: 0 },
+        ]
+    },
+    {
+        alias: "arcane_trickster",
+        name: "Arcane Trickster",
+        selected: true,
+        isArchetype: true,
+        weightedStats: [ { name: "INT", value: 3 },  { name: "DEX", value: 2 }, ],
+        enhancementTrees: [
+            { name : "Arcane Trickster", alias: "arcane_trickster", value: 0 },
+            { name : "Mechanic", alias: "mechanic", value: 0 },
+            { name : "Thief-Acrobat", alias: "thief_acrobat", value: 0 },
         ]
     }
 ]
