@@ -19,7 +19,8 @@ export type Class = {
     selected: boolean | string;
     isArchetype: boolean;
     weightedStats: Array<Stat>;
-    enhancementTrees: Array<Tree>
+    enhancementTrees: Array<Tree>;
+    baseClass?: string;
 }
 
 const free_classes: Array<Class> = [
@@ -221,7 +222,8 @@ const archetype_classes: Array<Class> = [
             { name : "Acolyte of the Skin", alias: "acolyte_of_the_skin", value: 0 },
             { name : "Soul Eater", alias: "soul_eater", value: 0 },
             { name : "Tainted Scholar", alias: "tainted_scholar", value: 0 },
-        ]
+        ],
+        baseClass: "warlock"
     },
     {
         alias: "blight_caster",
@@ -233,7 +235,8 @@ const archetype_classes: Array<Class> = [
             { name : "Season's Herald", alias: "seasons_herald", value: 0 },
             { name : "Nature's Warrior", alias: "natures_warrior", value: 0 },
             { name : "Blight Caster", alias: "blight_caster", value: 0 },
-        ]
+        ],
+        baseClass: "druid"
     },
     {
         alias: "dark_apostate",
@@ -245,7 +248,8 @@ const archetype_classes: Array<Class> = [
             { name : "Divine Disciple", alias: "divine_disciple", value: 0 },
             { name : "Dark Apostate", alias: "dark_apostate", value: 0 },
             { name : "Warpriest", alias: "warpriest", value: 0 },
-        ]
+        ],
+        baseClass: "cleric"
     },
     {
         alias: "dark_hunter",
@@ -257,7 +261,8 @@ const archetype_classes: Array<Class> = [
             { name : "Dark Hunter", alias: "dark_hunter", value: 0 },
             { name : "Deepwood Stalker", alias: "deepwood_stalker", value: 0 },
             { name : "Tempest", alias: "tempest", value: 0 },
-        ]
+        ],
+        baseClass: "ranger"
     },
     {
         alias: "sacred_fist",
@@ -269,7 +274,8 @@ const archetype_classes: Array<Class> = [
             { name : "Sacred Defender", alias: "sacred_defender", value: 0 },
             { name : "Radiant Servant", alias: "radiant_servant", value: 0 },
             { name : "Sacred Fist", alias: "sacred_fist", value: 0 },
-        ]
+        ],
+        baseClass: "paladin"
     },
     {
         alias: "stormsinger",
@@ -281,7 +287,8 @@ const archetype_classes: Array<Class> = [
             { name : "Spellsinger", alias: "spellsinger", value: 0 },
             { name : "Warchanter", alias: "warchanter", value: 0 },
             { name : "Stormsinger", alias: "stormsinger", value: 0 },
-        ]
+        ],
+        baseClass: "bard"
     },
     {
         alias: "dragonlord",
@@ -293,7 +300,8 @@ const archetype_classes: Array<Class> = [
             { name : "Stalwart Defender", alias: "stalwart_defender", value: 0 },
             { name : "Dragon Lord", alias: "dragon_lord", value: 0 },
             { name : "Ravager", alias: "ravager", value: 0 },
-        ]
+        ],
+        baseClass: "fighter"
     },
     {
         alias: "dragon_disciple",
@@ -305,7 +313,8 @@ const archetype_classes: Array<Class> = [
             { name : "Ninja Spy", alias: "ninja_spy", value: 0 },
             { name : "Shintao Monk", alias: "shintao_monk", value: 0 },
             { name : "Dragon Disciple", alias: "dragon_disciple", value: 0 },
-        ]
+        ],
+        baseClass: "Monk"
     },
     {
         alias: "arcane_trickster",
@@ -317,7 +326,8 @@ const archetype_classes: Array<Class> = [
             { name : "Arcane Trickster", alias: "arcane_trickster", value: 0 },
             { name : "Mechanic", alias: "mechanic", value: 0 },
             { name : "Thief-Acrobat", alias: "thief_acrobat", value: 0 },
-        ]
+        ],
+        baseClass: "rogue"
     }
 ]
 

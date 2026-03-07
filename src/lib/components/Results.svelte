@@ -216,7 +216,14 @@
         let levels, alias : string, name, enhancementTrees, weightedStats : any[] = [];
 
         for (let i = 1; i <= numberClasses; i++) {
-            if (classesCopy.length === 0) break;
+            if (classesCopy.length === 0) {
+                // If no class is available due to filtering, ensure the last chosen class gets all remaining levels
+                if (chosenClasses.length > 0 && totalLvls > 0) {
+                    chosenClasses[chosenClasses.length - 1].levels += totalLvls;
+                    totalLvls = 0;
+                }
+                break;
+            }
 
             if (i === 1 && chosenRace?.forcedClass && chosenRace.forcedClass.length > 0) {
                 alias = chosenRace.forcedClass;
@@ -236,6 +243,21 @@
                 enhancementTrees = classesCopy[classIdx].enhancementTrees;
             }
 
+            const selectedClass = classesCopy.find(_class => _class.alias === alias);
+    
+            // If an archetype is selected, remove its base class and other archetypes of the same base
+            if (selectedClass?.baseClass) {
+                const baseClassAlias = selectedClass.baseClass;
+                classesCopy = classesCopy.filter(function(_class) {
+                    return _class.alias !== baseClassAlias && _class.baseClass !== baseClassAlias;
+                });
+            }
+    
+            // if baseclass and alias match, don't use (so archetypes don't select base class)
+            classesCopy = classesCopy.filter(function(_class) {
+                return _class.baseClass !== alias;
+            });
+
             // paladins/sacred fist cant multiclass with : bard, barbarian, druid, and acolyte of the skin
             // monks cant multiclass with : bard, barbarian
             // archetypes can't be the core class
@@ -243,7 +265,7 @@
                 case 'bard':
                 case 'stormsinger':
                     classesCopy = classesCopy.filter(function( _class ) {
-                        return !["paladin", "sacred_fist", "monk", "stormsinger", "bard"].includes(_class.alias);
+                        return !["paladin", "sacred_fist", "monk"].includes(_class.alias);
                     })
                     break;
                 case 'barbarian':
@@ -254,46 +276,23 @@
                 case 'druid':
                 case 'blight_caster':
                     classesCopy = classesCopy.filter(function( _class ) {
-                        return !["paladin", "sacred_fist", "blight_caster", "druid"].includes(_class.alias);
-                    })
-                    break;
-                case 'dark_apostate':
-                case 'cleric':
-                    classesCopy = classesCopy.filter(function( _class ) {
-                        return !["cleric", "dark_apostate"].includes(_class.alias);
-                    })
-                    break;
-                case 'dark_hunter':
-                case 'ranger':
-                    classesCopy = classesCopy.filter(function( _class ) {
-                        return !["ranger", "dark_hunter"].includes(_class.alias);
+                        return !["paladin", "sacred_fist"].includes(_class.alias);
                     })
                     break;
                 case 'acolyte_of_the_skin':
                     classesCopy = classesCopy.filter(function( _class ) {
-                        return !["paladin", "sacred_fist", "warlock"].includes(_class.alias);
-                    })
-                    break;
-                case 'warlock':
-                    classesCopy = classesCopy.filter(function( _class ) {
-                        return !["acolyte_of_the_skin"].includes(_class.alias);
+                        return !["paladin", "sacred_fist"].includes(_class.alias);
                     })
                     break;
                 case 'paladin':
                 case 'sacred_fist':
                     classesCopy = classesCopy.filter(function( _class ) {
-                        return !["bard", "barbarian", "druid", "acolyte_of_the_skin", "paladin", "sacred_fist"].includes(_class.alias);
+                        return !["bard", "barbarian", "druid", "acolyte_of_the_skin"].includes(_class.alias);
                     })
                     break;
                 case 'monk':
                     classesCopy = classesCopy.filter(function( _class ) {
                         return !["bard", "barbarian"].includes(_class.alias);
-                    })
-                    break;
-                case 'rogue':
-                case 'arcane_trickster':
-                    classesCopy = classesCopy.filter(function( _class ) {
-                        return !["arcane_trickster", "rogue"].includes(_class.alias);
                     })
                     break;
 
@@ -302,7 +301,7 @@
 
             if (i > 1) {
                 // if this is the last level, we dump all the remaining levels
-                if (i === numberClasses) {
+                if (i === numberClasses || classesCopy.length === 0) {
                     levels = totalLvls;
                 } else {
                     levels = Math.floor(Math.random() * (totalLvls - (numberClasses - i + 1)) + 1);
@@ -911,13 +910,13 @@
                         </TableBodyCell>
                         <TableBodyCell>
                             <div class="flex justify-center items-center gap-2">
-                                <button on:click={ download(item) } title="Download button">
+                                <button on:click={ download(item) } title="Download button" aria-label="Download character build">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                                     </svg>
                                 </button>
                                 /
-                                <button on:click={ navigator.clipboard.writeText(createBlobText(item)) } title="Copy button">
+                                <button on:click={ navigator.clipboard.writeText(createBlobText(item)) } title="Copy button" aria-label="Copy character build to clipboard">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5A3.375 3.375 0 006.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-1.5a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 00-9-9z" />
                                     </svg>
